@@ -1,0 +1,23 @@
+---
+    - hosts: 127.0.0.1
+      become: yes
+      tasks:
+        - name: gather ec2 facts
+          action: ec2_metadata_facts
+        - name: install docker
+          shell: "amazon-linux-extras install docker"
+        - name: enable docker on startup and start service
+          service: name=docker enabled=yes state=started
+        - name: Add ec2-user to docker group
+          user:
+            name: ec2-user
+            group: docker
+        - name: clone hive repo
+          git:
+            repo: https://github.com/jperez3/hive.git
+            dest: /tmp
+            accept_hostkey: yes
+        - name: build the hive image
+          command: docker build -t hive:latest /tmp/hive
+        - name: run the hive image
+          command: docker run --name=hive -d -p 443:443 hive:latest
