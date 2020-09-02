@@ -34,13 +34,7 @@ jobs:
           git config --global user.email "joe@ordisius.com"
           git config --global user.name "joe"
 
-      - name: tbump dry-run
-        if: ${{ github.event.inputs.tbumpOption }} == '--dry-run'
-        run: |
-          tbump ${{ github.event.inputs.tbumpOption }} ${{ github.event.inputs.newTag }}
-
       - name: tbump run
-        if: ${{ github.event.inputs.tbumpOption }} == '--non-interactive'
         run: |
           tbump ${{ github.event.inputs.tbumpOption }} ${{ github.event.inputs.newTag }}
 
