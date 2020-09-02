@@ -24,4 +24,4 @@ jobs:
       run: docker build . --file Dockerfile --tag hive:latest
 
     - name: Push the Docker image
-        run: docker push ghcr.io/jperez3/hive:latest
+      run: docker push ghcr.io/jperez3/hive:latest
