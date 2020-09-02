@@ -13,12 +13,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name:
+    - name: Variable Check
       run: |
         echo "New Tag: ${{ github.event.inputs.newTag }}"
-    - name: Install prereqs
-      run: pip3 install --upgrade setuptools && pip3 install wheel
+    # - name: Install prereqs
+    #   run: pip3 install --upgrade setuptools && pip3 install wheel
+    # - name: Install tbump
+    #   run: pip3 install tbump
     - name: Install tbump
-      run: pip3 install tbump
+        run: |
+          pip3 install --upgrade setuptools
+          pip3 install wheel
+          pip3 install tbump
     - name: tbump dry-run
       run: tbump --dry-run ${{ github.event.inputs.newTag }}
