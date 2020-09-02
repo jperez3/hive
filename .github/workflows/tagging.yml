@@ -6,7 +6,7 @@ on:
         newTag:
           description: 'New tag'
           required: true
-          default: 'warning'
+          default: 'x.x.x'
 
 jobs:
   build:
@@ -21,9 +21,9 @@ jobs:
     # - name: Install tbump
     #   run: pip3 install tbump
     - name: Install tbump
-        run: |
-          pip3 install --upgrade setuptools
-          pip3 install wheel
-          pip3 install tbump
+      run: |
+        pip3 install --upgrade setuptools
+        pip3 install wheel
+        pip3 install tbump
     - name: tbump dry-run
       run: tbump --dry-run ${{ github.event.inputs.newTag }}
