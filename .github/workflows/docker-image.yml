@@ -14,5 +14,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Login to GitHub Package Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GHCR_TOKEN }}
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag hive:$(date +%s)
+      run: docker build . --file Dockerfile --tag hive:latest
+
+    - name: Push the Docker image
+        run: docker push ghcr.io/jperez3/hive:latest
