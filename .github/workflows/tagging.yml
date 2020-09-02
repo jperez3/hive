@@ -25,6 +25,10 @@ jobs:
           pip3 install --upgrade setuptools
           pip3 install wheel tbump
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Configure git
+        run: |
+          git config --global user.email "joe@ordisius.com"
+          git config --global user.name "joe"
       - name: Run tbump
         run: |
           tbump ${{ github.event.inputs.tbumpOption }} ${{ github.event.inputs.newTag }}
