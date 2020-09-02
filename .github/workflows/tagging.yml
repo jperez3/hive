@@ -25,4 +25,4 @@ jobs:
 
 
       - name: tbump dry-run
-        run: sleep 5 && tbump --dry-run ${{ github.event.inputs.newTag }}
+        run: sleep 15 && tbump --dry-run ${{ github.event.inputs.newTag }}
