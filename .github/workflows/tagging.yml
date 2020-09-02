@@ -12,16 +12,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      # - name: Install prereqs
-      #   run: pip3 install --upgrade setuptools && pip3 install wheel
-      # - name: Install tbump
-      #   run: pip3 install tbump
       - name: Install tbump
         run: |
           pip3 install --upgrade setuptools
           pip3 install wheel
           pip3 install tbump
+      - uses: actions/checkout@v2
+      # - name: Install prereqs
+      #   run: pip3 install --upgrade setuptools && pip3 install wheel
+      # - name: Install tbump
+      #   run: pip3 install tbump
+
 
 
       - name: tbump dry-run
