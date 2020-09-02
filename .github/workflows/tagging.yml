@@ -8,7 +8,7 @@ on:
         required: true
         default: "x.x.x"
       tbumpOption:
-        description: "tbump option"
+        description: "tbump option (to run, use: `--non-interactive`"
         default: "--dry-run"
 
 jobs:
