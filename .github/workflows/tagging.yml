@@ -22,8 +22,10 @@ jobs:
           pip3 install --upgrade setuptools
           pip3 install wheel
           pip3 install tbump
+
       - name: Variable Check
         run: |
             echo "New Tag: ${{ github.event.inputs.newTag }}"
+
       - name: tbump dry-run
         run: tbump --dry-run ${{ github.event.inputs.newTag }}
