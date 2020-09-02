@@ -1,3 +1,5 @@
+name: Tag Creation
+
 on:
     workflow_dispatch:
       inputs:
@@ -14,6 +16,8 @@ jobs:
     - name:
       run: |
         echo "New Tag: ${{ github.event.inputs.newTag }}"
+    - name: Install setuptools
+      run: pip3 install --upgrade setuptools
     - name: Install tbump
       run: pip3 install tbump
     - name: tbump dry-run
