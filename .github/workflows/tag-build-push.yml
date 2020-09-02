@@ -12,7 +12,7 @@ on:
         default: "--dry-run"
 
 jobs:
-  tag:
+  git-tag:
     runs-on: ubuntu-latest
     steps:
       - name: Git checkout
@@ -40,11 +40,12 @@ jobs:
           tbump ${{ github.event.inputs.tbumpOption }} ${{ github.event.inputs.newTag }}
 
       - name: tbump run
-        if: ${{ github.event.inputs.tbumpOption }} == '--dry-run'
+        if: ${{ github.event.inputs.tbumpOption }} == '--non-interactive'
         run: |
           tbump ${{ github.event.inputs.tbumpOption }} ${{ github.event.inputs.newTag }}
 
-  build:
+  build-push-container:
+    needs: git-tag
     runs-on: ubuntu-latest
     steps:
     - name: Git checkout
