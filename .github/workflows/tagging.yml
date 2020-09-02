@@ -11,19 +11,30 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Install tbump
-        run: |
-          pip3 install --upgrade setuptools
-          pip3 install wheel
-          pip3 install tbump
-      - uses: actions/checkout@v2
+    # steps:
+    #   - name: Install tbump
+    #     run: |
+    #       pip3 install --upgrade setuptools
+    #       pip3 install wheel
+    #       pip3 install tbump
+    #   - uses: actions/checkout@v2
       # - name: Install prereqs
       #   run: pip3 install --upgrade setuptools && pip3 install wheel
       # - name: Install tbump
       #   run: pip3 install tbump
-
-
-
-      - name: tbump dry-run
-        run: sleep 15 && tbump --dry-run ${{ github.event.inputs.newTag }}
+    #   - name: tbump dry-run
+    #     run: sleep 15 && tbump --dry-run ${{ github.event.inputs.newTag }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          python -m pip3 install --upgrade setuptools
+          pip3 install wheel tbump
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Lint with flake8
+        run: |
+          tbump --dry-run ${{ github.event.inputs.newTag }}
