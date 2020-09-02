@@ -23,7 +23,7 @@ jobs:
         password: ${{ secrets.GHCR_TOKEN }}
 
     - name: Build the docker image
-      run: docker build . --file Dockerfile --tag ghcr.io/jperez3/hive:${{steps.vars.outputs.tag}}
+      run: docker build . --file Dockerfile --tag ghcr.io/jperez3/hive:${{steps.vars.outputs.tag}} --tag ghcr.io/jperez3/hive:${{ github.sha }}
 
     - name: Push docker image to github container registry
       run: docker push ghcr.io/jperez3/hive:${{steps.vars.outputs.tag}}
