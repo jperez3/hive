@@ -16,9 +16,9 @@ jobs:
     - name:
       run: |
         echo "New Tag: ${{ github.event.inputs.newTag }}"
-    - name: Install setuptools
-      run: pip3 install --upgrade setuptools
+    - name: Install prereqs
+      run: pip3 install --upgrade setuptools && pip3 install wheel
     - name: Install tbump
-      run: pip3 install tbump && which tbump
+      run: pip3 install tbump
     - name: tbump dry-run
       run: tbump --dry-run ${{ github.event.inputs.newTag }}
