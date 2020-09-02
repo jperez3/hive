@@ -20,8 +20,5 @@ jobs:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GHCR_TOKEN }}
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag hive:latest
-
-    - name: Push the Docker image
-      run: docker push ghcr.io/jperez3/hive:latest
+    - name: Build and Push the Docker image
+      run: docker build . --file Dockerfile --tag hive:latest && docker push ghcr.io/jperez3/hive:latest
