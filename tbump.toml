@@ -13,7 +13,10 @@ regex = '''
   (?P<minor>\d+)
   \.
   (?P<patch>\d+)
-  '''
+  (
+    rc(?P<rc>\d+)
+  )?
+'''
 
 [git]
 message_template = "Bump to {new_version}"
