@@ -18,7 +18,6 @@ Description: a simple nginx container
 ### Github actions notes
 * when using `tbump` from your local machine to increment the version, you can trigger a workflow to start based on the tag. But when you use a workflow to use tbump to trigger another workflow, it doesn't work :sadpanda:
 * `tbump` is good because it puts up guard rails on how the version is bumped and makes sure all references to that version in the repo are updated
-* `tbump` is not so good because it doesn't seem to like the addition of things like `rc1` appended to the symantic versioning (eg. `1.2.3rc1`)
 * Triggering a workflow based on release allows you to add more notes for the release and seems like an alternative to `tbump` that can handle the `rc1` issue. On the other hand, it doesn't provide version replacement for all of the references in the repo
 * Since tagging and image building seem to go hand in hand, the workflows can be combined as two separate jobs
 * In order to do the tagging via github actions, you need to update the `git config` to include who is making the update
